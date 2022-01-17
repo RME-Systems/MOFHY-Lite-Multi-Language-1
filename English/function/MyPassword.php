@@ -3,8 +3,8 @@ include __DIR__.'/Connect.php';
 require __DIR__.'/../handler/CookieHandler.php';
 if(isset($_POST['submit'])){
 	$FormData = array(
-		'old_password' => $_POST['old_password'],
-		'new_password' => $_POST['new_password'],
+		'old_password' => mysqli_real_escape_string($connect, $_POST['old_password']),
+		'new_password' => mysqli_real_escape_string($connect, $_POST['new_password']),
 		'hashed_password' => sha1($_POST['new_password']),
 		'user_key' => $ClientInfo['hosting_client_key'],
 		'user_password' => $ClientInfo['hosting_client_password'],
